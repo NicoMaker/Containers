@@ -6,6 +6,6 @@ COPY package.json .
 
 RUN npm install
 
-COPY . .
+COPY . .e
 
 CMD ["node", "app.js"]
