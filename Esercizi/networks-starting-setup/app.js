@@ -20,13 +20,10 @@ app.post("/favorites", async (req, res) => {
     favUrl = req.body.url;
 
   try {
-    if (favType !== "movie" && favType !== "character") {
+    if (favType !== "movie" && favType !== "character")
       throw new Error('"type" should be "movie" or "character"!');
-    }
     const existingFav = await Favorite.findOne({ name: favName });
-    if (existingFav) {
-      throw new Error("Favorite exists already!");
-    }
+    if (existingFav) throw new Error("Favorite exists already!");
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -65,14 +62,13 @@ app.get("/people", async (req, res) => {
   }
 });
 
+// host.docker.internal -> localhost (for Docker) interpretato da docker
+
 mongoose.connect(
-  "mongodb://localhost:27017/swfavorites",
+  "mongodb://host.docker.internal:27017/swfavorites",
   { useNewUrlParser: true },
   (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      app.listen(3000);
-    }
+    if (err) console.log(err);
+    else app.listen(3000);
   }
 );
