@@ -1,11 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose"),
+  Schema = mongoose.Schema,
+  goalSchema = new Schema({
+    text: String,
+  });
 
-const Schema = mongoose.Schema;
-
-const goalSchema = new Schema({
-  text: String
-});
-
-const GoalModel = mongoose.model('Goal', goalSchema);
+const GoalModel = mongoose.model("Goal", goalSchema);
 
 module.exports = GoalModel;
