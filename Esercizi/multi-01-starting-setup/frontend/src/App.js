@@ -17,9 +17,8 @@ function App() {
         const response = await fetch("http://localhost/goals"),
           resData = await response.json();
 
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(resData.message || "Fetching the goals failed.");
-        }
 
         setLoadedGoals(resData.goals);
       } catch (err) {
@@ -83,9 +82,8 @@ function App() {
 
       const resData = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(resData.message || "Deleting the goal failed.");
-      }
 
       setLoadedGoals((prevGoals) => {
         const updatedGoals = prevGoals.filter((goal) => goal.id !== goalId);
