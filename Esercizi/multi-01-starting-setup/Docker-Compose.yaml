@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - 'data:/data/db'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'its'
+      MONGO_INITDB_ROOT_PASSWORD: 'Vmware1!'
+  backend:
+    build: ./backend
+    ports:
+      - '81:80'
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - MONGODB_USERNAME;its
+      - MONGODB_PASSWORD:Vmware1!
+    depends_on:
+      - mongodb # prima di partire aspetta che mongodb sia partito
+  # frontend:
+volumes:
+  data:
+  logs:
