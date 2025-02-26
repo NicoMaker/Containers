@@ -79,13 +79,8 @@ app.delete("/goals/:id", async (req, res) => {
   }
 });
 
-const nome_utente = "its",
-  password = "Vmware1!",
-  service = "mongodb",
-  admin = "authSource=admin";
-
 mongoose.connect(
-  `mongodb://${nome_utente}:${password}@${service}:27017/course-goals?${admin}`,
+  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/course-goals?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
